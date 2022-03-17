@@ -27,6 +27,7 @@ struct MemoryGame<CardContent> where CardContent: Equatable{
                 for index in cards.indices{
                     cards[index].isFaceUp = false
                 }
+                indexOfTheOneAndOnlyFaceUpCard = chosenIndex
             }
             cards[chosenIndex].isFaceUp.toggle()
         }
@@ -48,10 +49,11 @@ struct MemoryGame<CardContent> where CardContent: Equatable{
             cards.append(Card(content: content, id: pairIndex*2))
             cards.append(Card(content: content, id: pairIndex*2+1))
         }
+        cards.shuffle()
     }
     
     struct Card: Identifiable{
-        var isFaceUp: Bool = false
+        var isFaceUp: Bool = true
         var isMatched: Bool = false
         var content: CardContent
         var id: Int
